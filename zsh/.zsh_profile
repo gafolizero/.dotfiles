@@ -1,0 +1,21 @@
+# Define the git branch function
+function git_branch() {
+  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [[ -n $branch ]]; then
+    echo " %F{4}($branch)%f"
+  fi
+}
+
+# Set up the prompt with the function properly integrated
+setopt PROMPT_SUBST
+PROMPT='%F{50}%~%f$(git_branch) %F{3}$ %f'
+
+# Enable vi key bindings in Zsh
+bindkey -v
+
+# Aliases
+alias vim='nvim'
+alias ns='npm start'
+alias nr='npm run'
+alias rjf='redshift -O 5300'
+alias rjd='redshift -x'
